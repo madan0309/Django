@@ -1,0 +1,26 @@
+{% extends "cadmin/base_admin.html" %}
+
+{% block title %}
+    Add New Post - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+
+    <p>&#187; <a href="{% url 'post_list'%}">All Posts</a> &#187; Add Post</p>
+
+    <h3>Add Post</h3>
+
+    <form action="" method="post">
+		<fieldset>
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                
+                <td><input type="submit"></td>
+            </tr>
+        </table>
+		</fieldset>
+    </form>
+
+{% endblock %}

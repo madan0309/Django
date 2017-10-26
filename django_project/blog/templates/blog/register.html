@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% block title %}
+	Tracking User = {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div class="login">
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<h1>Create account - The Great Django Blog</h1>
+		<form method="post">
+		{% csrf_token %}
+		<fieldset>
+			<table>
+			{% for field in form%}
+				<tr>
+					<td>{{ field.label_tag }}</td>
+					<td>
+						{{ field.errors }}
+						{{ field }}
+					</td>
+					<td>
+						{% if field.help_text %}
+						{{ field.help_text }}
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<td></td>
+				<td><input type="submit" name="submit" value="Register"></td>
+			</tr>
+			</table>
+		</fieldset>
+		</form>
+		<p><a href="{% url 'blog_login' %}"> Already have account! Login</a></p>
+	</div>
+{% endblock %}
